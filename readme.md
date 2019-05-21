@@ -71,4 +71,7 @@
 '
 2. explain the method and the retuned expression.
 3. try the results and comment about it.
+4. replace the context to params
+5. accest the test with params.id instead of context.params.id
+6. test the validate method.
     
