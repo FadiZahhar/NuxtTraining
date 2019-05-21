@@ -32,4 +32,31 @@
 ## route parameters
 1. use the `{{ $route.params.id }}` instead of X in the  index.vue inside /users/_id folder
 2. try to explain what is the method did by testing it  (cast the route parameters and display)
-3. 
+3. add the folowing in the user index page
+`
+<input type="text" v-model="id">
+<button @click="loadUser">Load user</button>
+
+`
+
+4. set the script in the user index page
+
+`
+<script>
+    export default {
+        data() {
+            return {
+                id: ''
+            }
+        },
+
+        methods: {
+            loadUser() {
+                this.$router.push(`/users/${this.id}`)
+            }
+        }
+    }
+</script>
+`
+
+5. explain in details what is happening and what the script do.
