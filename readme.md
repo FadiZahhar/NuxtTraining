@@ -60,3 +60,15 @@
 `
 
 5. explain in details what is happening and what the script do.
+
+
+## validate method
+1. write the following validate method in index.vue inside the users/_id folder in a proper script (export default).
+'
+     validate(context) {
+         return /^\d+$/.test(context.params.id)
+     }
+'
+2. explain the method and the retuned expression.
+3. try the results and comment about it.
+    
