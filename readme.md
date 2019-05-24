@@ -165,3 +165,30 @@ import axios from 'axios'
 * you can use it to access core nuxt proerties such as route, store etc
 
 * The result from asyncData will be merged with data. 
+
+
+## asyncData method runs on both client and server side
+
+1. comment out the scripts inside the index.vue of posts pages and make sure the h2 for loop of posts is commented as well for not displaying any error.
+1. create a new script that have the asyncData as following
+
+```
+<script>
+    export default {
+        asyncData(context) {
+            console.log(context)
+        }
+    }
+</script>
+
+```
+
+3. shut down the server and run it up again by typing npm run dev
+4. refresh the posts page in the browser
+5. you can find that you have a huge ogject on the cli, because we console.log the context
+6. this meens it is running in the server side.
+7. if you open the console.log in the client side at the browser you won't see the context on the client.
+8. if you navigate to home page and then back to posts you will noticed that the console.log will display on the client side.
+9. this is a proof of concept that asyncData will run on both server side and client side.
+10. for the first time it will load from the server side on the initial load, and once you navigate in the page, it will load as a single page application from the client side.
+ 
