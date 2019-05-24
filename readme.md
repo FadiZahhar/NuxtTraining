@@ -29,18 +29,16 @@
 
 ```
 
-4. now you need to install axios on the project
-
-5. go to learning folder root and type npm install axios
-
-6. write below the script and above the export default the import method.
+1. now you need to install axios on the project
+1. go to learning folder root and type npm install axios
+1. write below the script and above the export default the import method.
 
 ```
 import axios from 'axios'
 
 ```
 
-7. write the mounted method after the data method
+1. write the mounted method after the data method
 
 ```
 mounted() {
@@ -48,13 +46,13 @@ mounted() {
 }
 ```
 
-8. inside the mounted method use the axios to get the fake todo json list service https://jsonplaceholder.typicode.com/todos
+1. inside the mounted method use the axios to get the fake todo json list service https://jsonplaceholder.typicode.com/todos
 
 ```
  axios.get('http://jsonplaceholder.typicode.com/todos/')
  
 ```
-9. add the them promis below axios to get the response data
+1. add the them promis below axios to get the response data
 
 ```
 .then(response => {
@@ -64,7 +62,7 @@ mounted() {
 
 ```
 
-10. add the catch error method to handle the exception if any
+1. add the catch error method to handle the exception if any
 
 ```
  .catch(error => {
@@ -73,7 +71,7 @@ mounted() {
 
 ```
 
-11. you can find the final script code should look like this
+1. you can find the final script code should look like this
 
 ```
 <script>
@@ -100,7 +98,7 @@ import axios from 'axios'
 
 ```
 
-12. update the template by adding a main container div to wrap evrething and then adding a seperator hr with the following code
+1. update the template by adding a main container div to wrap evrething and then adding a seperator hr with the following code
 
 ```
 <hr />
@@ -109,11 +107,9 @@ import axios from 'axios'
 </div>
 
 ```
-13. try to explain the v-for and the :key role and what will do
-
-14. check the results the page should load successfully.
-
-15. the final code for the index.vue inside the posts page is the following
+1. try to explain the v-for and the :key role and what will do
+1. check the results the page should load successfully.
+1. the final code for the index.vue inside the posts page is the following
 
 ```
 <template>
