@@ -155,6 +155,13 @@ import axios from 'axios'
 
 ## Making API request using asncData using Nuxt Js
 
+* asyncData() is called every time before loading the component
+* use only on nuxt pages not in vue components
 
+* asyncData is called from the server side before the component is mounted
+* that's why you dont have access to 'this' keyword inside asyncData()
 
+* this method receives the context object as the first argument,
+* you can use it to access core nuxt proerties such as route, store etc
 
+* The result from asyncData will be merged with data. 
