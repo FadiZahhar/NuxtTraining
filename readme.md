@@ -153,7 +153,7 @@ import axios from 'axios'
 ```
 
 
-## Making API request using asncData using Nuxt Js
+## Making API request using asyncData using Nuxt Js
 
 * asyncData() is called every time before loading the component
 * use only on nuxt pages not in vue components
@@ -191,4 +191,3 @@ import axios from 'axios'
 8. if you navigate to home page and then back to posts you will noticed that the console.log will display on the client side.
 9. this is a proof of concept that asyncData will run on both server side and client side.
 10. for the first time it will load from the server side on the initial load, and once you navigate in the page, it will load as a single page application from the client side.
- 
