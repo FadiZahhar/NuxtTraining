@@ -167,7 +167,7 @@ import axios from 'axios'
 * The result from asyncData will be merged with data. 
 
 
-## asyncData method runs on both client and server side
+## asyncData method runs on both client and server side (Proof Of Concept)
 
 1. comment out the scripts inside the index.vue of posts pages and make sure the h2 for loop of posts is commented as well for not displaying any error.
 1. create a new script that have the asyncData as following
@@ -191,3 +191,6 @@ import axios from 'axios'
 8. if you navigate to home page and then back to posts you will noticed that the console.log will display on the client side.
 9. this is a proof of concept that asyncData will run on both server side and client side.
 10. for the first time it will load from the server side on the initial load, and once you navigate in the page, it will load as a single page application from the client side.
+
+
+## Using asyncData
