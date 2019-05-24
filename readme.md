@@ -1,7 +1,9 @@
-# Making API request Vue JS Way
+# Working with our first project
+
+## Making API request Vue JS Way
 1. create a new folder in the pages and name it posts
-2. create a new file insie posts and name it index.vue
-3. create a template and add the following code below
+1. create a new file insie posts and name it index.vue
+1. create a template and add the following code below
 
 ```
 <template>
@@ -155,7 +157,7 @@ import axios from 'axios'
 ```
 
 
-# Making API request using asncData using Nuxt Js
+## Making API request using asncData using Nuxt Js
 
 
 
