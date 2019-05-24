@@ -1,70 +1,162 @@
-# Nuxt child Component
-create a users.vue in the pages and make a template such this
-`
+# Making API request Vue JS Way
+1. create a new folder in the pages and name it posts
+2. create a new file insie posts and name it index.vue
+3. create a template and add the following code below
+
+```
 <template>
-    <div style="background:red;">
-        <h4>You can see me in all users related pages</h4>
+<div>
+    <div>
+        <h2>Making API request - the Vue way</h2>
+ 
     </div>
+
+</div>
+
 </template>
-`
-what we did is we create a template that can be rendered on all users pages, so the folder users, have a template layout inside pages named users.vue
 
+<script>
+    export default {
+        data() {
+            return {
+                posts: []
+            }
+        }
+    }
+</script>
 
-write a Style that have a body of backgorund color azure; in the default vue layouts.
+```
 
+4. now you need to install axios on the project
 
+5. go to learning folder root and type npm install axios
 
-# Using Bootstrap4 and jQuery
-there are 2 ways
-1. using the CDN 
-2. using them as plugin
+6. write below the script and above the export default the import method.
 
-we will start using the CDN and later in advanced training we will use them as plugin.
+```
+import axios from 'axios'
 
-1. go to nuxt.config.js
-2. in the link array below faveicon style add the following `{ rel: 'stylesheet', href:"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" }`
-3. add the related scripts as an array of object below the link array.
-`
-    script: [
-      {
-        src:'https://code.jquery.com/jquery-3.3.1.slim.min.js',
-        type: 'text/javascript'
-      },
-      {
-        src:'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
-        type: 'text/javascript'
-      },
-      {
-        src:'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
-        type: 'text/javascript'
-      },
-    ]
-`
+```
 
-# Creating Navigation
-1. Create a Nav.vue Component in the Component folder
-2. create a template and paste a nav markup that we can find in the boostrap 4 hamburger example.
-`
+7. write the mounted method after the data method
+
+```
+mounted() {
+
+}
+```
+
+8. inside the mounted method use the axios to get the fake todo json list service https://jsonplaceholder.typicode.com/todos
+
+```
+ axios.get('http://jsonplaceholder.typicode.com/todos/')
+ 
+```
+9. add the them promis below axios to get the response data
+
+```
+.then(response => {
+                console.log(response)
+                this.posts = response.data
+            })
+
+```
+
+10. add the catch error method to handle the exception if any
+
+```
+ .catch(error => {
+                console.log(error)
+            })
+
+```
+
+11. you can find the final script code should look like this
+
+```
+<script>
+import axios from 'axios'
+    export default {
+        data() {
+            return {
+                posts: []
+            }
+        },
+
+        mounted() {
+            axios.get('http://jsonplaceholder.typicode.com/todos/')
+            .then(response => {
+                console.log(response)
+                this.posts = response.data
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+    }
+</script>
+
+```
+
+12. update the template by adding a main container div to wrap evrething and then adding a seperator hr with the following code
+
+```
+<hr />
+<div class="container">
+        <h4 v-for="post in posts" :key="post.id">{{post.title}}</h4>
+</div>
+
+```
+13. try to explain the v-for and the :key role and what will do
+
+14. check the results the page should load successfully.
+
+15. the final code for the index.vue inside the posts page is the following
+
+```
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Nuxt App</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div>
+    <div>
+        <h2>Making API request - the Vue way</h2>
+ 
+    </div>
+<hr />
+<div class="container">
+        <h4 v-for="post in posts" :key="post.id">{{post.title}}</h4>
+</div>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+</div>
+
 </template>
-`
 
-3. import it to the layouts default (import Nav from '@/components/Nav')
-4. register the component ( export default { components: { Nav } } ) 
+<script>
+import axios from 'axios'
+    export default {
+        data() {
+            return {
+                posts: []
+            }
+        },
+
+        mounted() {
+            axios.get('http://jsonplaceholder.typicode.com/todos/')
+            .then(response => {
+                console.log(response)
+                this.posts = response.data
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        }
+    }
+</script>
+
+
+```
+
+
+# Making API request using asncData using Nuxt Js
+
+
+
+
