@@ -194,3 +194,104 @@ import axios from 'axios'
 
 
 ## Using asyncData
+1. try to add the following data() { return posts }
+
+```
+<script>
+    export default {
+        data() {
+            return {
+                posts: '20 posts'
+            }
+        },
+        asyncData(context) {
+            console.log(context)
+        }
+    }
+</script>
+
+```
+
+2. comment the h4 v-for and render the {{posts}} instead.
+3. you will see that the hard coded apeared.
+4. if we use the asyncData(context) and return as following.
+
+```
+<script>
+    export default {
+        data() {
+            return {
+                posts: '20 posts'
+            }
+        },
+        asyncData(context) {
+            return { posts: '100 posts' }
+        }
+    }
+</script>
+
+```
+5. so as you can see that the asyncData method will since to the data and replace the original posts from 20 posts to 100 posts.
+6. let us not use context for the moment use axios to get the request with the following url https://jsonplaceholder.typicode.com/todos
+7. inport axios and do the following
+
+```
+<script>
+import axios from 'axios'
+    export default {
+        data() {
+            return posts: ''
+        },
+        asyncData(context) {
+            axios.get('htts://jsonplaceholder.typicode.com/todos')
+            .then(res => {
+                console.log(res)
+            })
+        }
+    }
+</script>
+
+```
+8. go to components -> nav.vue and change the home link to nuxt link replace the Nuxt App .navbar-brand class name
+```
+<nuxt-link to="/" class="navbar-brand">Nuxt App</nuxt-link> 
+```
+9. instead of console.log(res) replace it with return { posts: res.data}
+10. to be able to see the posts results in the front end you need to make sure that you use return axios.get
+
+```
+<script>
+import axios from 'axios'
+    export default {
+        data() {
+            return posts: ''
+        },
+        asyncData(context) {
+            return axios.get('htts://jsonplaceholder.typicode.com/todos')
+            .then(res => {
+                return {posts: res.data}
+            })
+        }
+    }
+</script>
+
+```
+11. after you see all the data, you need to remove {{ posts }} and put again the following code instead.
+
+```
+
+<hr />
+<div class="container">
+        <h4 v-for="post in posts" :key="post.id">{{post.title}}</h4>
+</div>
+
+```
+12. you can view the source of the html and you will see it is SEO friendly since it was rendered from the server side.
+
+## async awaite to make API request
+
+## Vue Component
+
+## show post by id
+
+## Getting individual post
