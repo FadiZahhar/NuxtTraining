@@ -289,9 +289,141 @@ import axios from 'axios'
 12. you can view the source of the html and you will see it is SEO friendly since it was rendered from the server side.
 
 ## async awaite to make API request
+1. to spimplify the api request we will use async api.
+2. asign the axios.get  with a variable res and use async asyncData() as a method with await keybowrd
+3. example 
+```
+<script>
+import axios from 'axios'
+    export default {
+        data() {
+            return posts: ''
+        },
+        async asyncData() {
+            let res = await axios.get('htts://jsonplaceholder.typicode.com/todos')
+            return {posts: res.data}
+        }
+    }
+</script>
+
+```
+
+4. we can also distruct the data in another way of typing the code this is an example
+
+```
+<script>
+import axios from 'axios'
+    export default {
+        data() {
+            return {
+                posts: ''
+            }
+        },
+        async asyncData() {
+            let {data} = await axios.get('htts://jsonplaceholder.typicode.com/todos')
+            return {posts: data}
+        },
+        head: {
+            title: 'List of Posts'
+        }
+    }
+</script>
+
+```
 
 ## Vue Component
+1. make a reusable component 
+2. go to the latest bootsrap link card and take the html code from here https://getbootstrap.com/docs/4.3/components/card/
+3. create card.vue in the component folder
+4. example
+
+```
+<template>
+    <div>
+        <div class="card" style="width: 18rem;">
+        <div class="card-header">Post: {{ post.id }}</div>
+        <div class="card-body">
+            <h5 class="card-title">{{post.title}}</h5>
+        </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    props: {
+        post: Object
+    }
+}
+</script>
+
+```
+5. go to index.vue in posts folder and import the Card from '/@components/Card`
+
+```
+import axios from 'axios'
+import Card from '@/components/Card'
+
+```
+
+6. above the data() add the components property in the script code
+```
+<script>
+import axios from 'axios'
+    export default {
+        components: {
+            Card
+        },
+        data() {
+            return {
+                posts: ''
+            }
+        },
+        async asyncData() {
+            let {data} = await axios.get('htts://jsonplaceholder.typicode.com/todos')
+            return {posts: data}
+        },
+        head: {
+            title: 'List of Posts'
+        }
+    }
+</script>
+
+```
+
+7. replace the h4 in the index.vue template in the folder posts into the card component.
+old code 
+```
+<div class="container">
+<h4 v-for="post in posts" :key="post.id">{{post.title}}</h4>
+</div>
+
+```
+
+new code
+```
+<div class="container row">
+<Card v-for="post in posts" :key="post.id" :post="post" class="ml-auto mr-auto" />
+</div>
+
+```
 
 ## show post by id
+1. make each pos by id to open the post.
+2. create a folder called _id inside the posts folder
+3. create the following template as index.vue inside the _id folder
+```
+<template>
+    <div>
+        {{$route.params.id}}
+    </div>
+</template>
+
+```
+4. now you can wrap the nuxt-link inside the post title of the card compopnent to make the link.
+```
+<h5 class="card-title"><nuxt-link :to="{name : 'posts-id', params:{id: post.id}}">{{post.title}}</nuxt-link></h5>
+
+```
 
 ## Getting individual post
