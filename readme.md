@@ -427,3 +427,51 @@ new code
 ```
 
 ## Getting individual post
+1. it is the time to practice by your own.
+2. copy the scripts from all posts and past it in the index.vue _id
+3. make the await axios request to be `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+4. fill the template as the following.
+```
+<template>
+    <div class="container">
+        <h1>{{post.title}}</h1>
+        <pre>{{post.body}}</pre>
+        <nuxt-link to="/posts">Back to posts</nuxt-link>
+    </div>
+</template>
+
+```
+
+5. example of the script
+```
+<script>
+import axios from 'axios'
+    export default {
+        components: {
+            Card
+        },
+        data() {
+            return {
+                posts: ''
+            }
+        },
+        async asyncData() {
+            let {data} = await axios.get(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`)
+            return {posts: data}
+        },
+        head: {
+            title: this.post.title
+        }
+    }
+</script>
+
+```
+
+6. you can simplify the code by putting params in asyncData
+```
+async asyncData({params}) {
+            let {data} = await axios.get(`https://jsonplaceholder.typicode.com/posts/${params.id}`)
+            return {posts: data}
+        }
+
+```
