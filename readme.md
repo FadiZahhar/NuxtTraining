@@ -243,7 +243,7 @@ import axios from 'axios'
             return posts: ''
         },
         asyncData(context) {
-            axios.get('htts://jsonplaceholder.typicode.com/todos')
+            axios.get('http://jsonplaceholder.typicode.com/todos')
             .then(res => {
                 console.log(res)
             })
@@ -267,7 +267,7 @@ import axios from 'axios'
             return posts: ''
         },
         asyncData(context) {
-            return axios.get('htts://jsonplaceholder.typicode.com/todos')
+            return axios.get('http://jsonplaceholder.typicode.com/todos')
             .then(res => {
                 return {posts: res.data}
             })
@@ -300,7 +300,7 @@ import axios from 'axios'
             return posts: ''
         },
         async asyncData() {
-            let res = await axios.get('htts://jsonplaceholder.typicode.com/todos')
+            let res = await axios.get('http://jsonplaceholder.typicode.com/todos')
             return {posts: res.data}
         }
     }
@@ -320,7 +320,7 @@ import axios from 'axios'
             }
         },
         async asyncData() {
-            let {data} = await axios.get('htts://jsonplaceholder.typicode.com/todos')
+            let {data} = await axios.get('http://jsonplaceholder.typicode.com/todos')
             return {posts: data}
         },
         head: {
@@ -380,7 +380,7 @@ import axios from 'axios'
             }
         },
         async asyncData() {
-            let {data} = await axios.get('htts://jsonplaceholder.typicode.com/todos')
+            let {data} = await axios.get('http://jsonplaceholder.typicode.com/todos')
             return {posts: data}
         },
         head: {
