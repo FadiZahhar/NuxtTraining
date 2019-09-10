@@ -1,5 +1,17 @@
-# Starng installing nuxtjs
-1. check you node version node -v
+# Installing and using Plugins
+1. google "vue scrollto"
+2. install the plugin on the solution folder by typing "npm i vue-scrollto"
+3. run the server again by typing "npm run dev"
+4. go to your plugins folder, create a new file name it "scrollto.js"
+5. open the file and import the following
+`import Vue from "vue";
+import VueScrollTo from "vue-scrollto"`
+6. in the nuxt.config.js go use the plugin globaly by going to plugins section and fill the array.
+`plugins: ["@/plugins/scrollto.js"]`
+7. go to posts in the pages , index.vue and add the following line below Card
+`<Card v-for="post in posts" :key="post.id" :post="post" class="ml-auto mr-auto" />
+ <button class="btn btn-danger" v-scroll-to="'body'">Back to Top</button>`
+
 
 ## install vue Cli globaly
 1. npm install -g @vue/cli
