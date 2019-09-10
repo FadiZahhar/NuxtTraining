@@ -13,43 +13,87 @@ import VueScrollTo from "vue-scrollto"`
  <button class="btn btn-danger" v-scroll-to="'body'">Back to Top</button>`
 
 
-## install vue Cli globaly
-1. npm install -g @vue/cli
+## No SSR Component
+there are plugins that don't support server side rendering to make it work we need to do the following.
+1. isntall it
+`npm i vue-select`
+2. create a new file in the plugins folder name it 'vueselect.js'
+3. import the vue then the library
+`import Vue from "vue";
+import vSelect from "vue-select";``
 
-## install nuxtjs 
-1. enter the folder project and white the follow to create a nux app
+4. use the vue component 
+`Vue.component("v-select", vSelect);`
 
-npx is shipped by default since NPM 5.2.0
+5. import the vue globaly on the nuxt.config.js
+`
+ plugins: ["@/plugins/scrollto.js",
+  {
+      src: "@/plugins/vueselect.js",
+      ssr: false
+    }
+  ],
+`
 
-npx create-nuxt-app learning
+6. in the main index.vue pages under the hello world add the following select component
+`
+<no-ssr>
+	  		<v-select v-model="selected" placeholder="Select Category" :options="['foo', 'bar']"></v-select>
+	  	</no-ssr>
 
-### Fill the questions
- project name
- 1. project description
- 1. custom ui framework none
- 1. ui framework (for now no)
- 1. universal (yes)
- 1. axios module no
- 1. esling no
- 1. author name
- choose package manager npm
+`
 
-## run the dev command
+7. the full index.vue should be like that including the script and a div container for not making errors.
+`<template>
+	<div>
+		<h1>hello world</h1>
+		<no-ssr>
+	  		<v-select v-model="selected" placeholder="Select Category" :options="['foo', 'bar']"></v-select>
+	  	</no-ssr>
+	</div>
+</template>
 
-1. enter the learning folder in the training project and
-1. npm run dev
+<script>
+	export default {
+		data() {
+			return {
+				selected: ''
+			}
+		}
+	}
+</script>`
+
+### notes
+this component works on the client side this is we will put <no-ssr> to make it work. also we set the ssr to false in the nux.config.js as an object format.
 
 
-# Discovering folders in nuxtjs.
+## Nuxt server init method
+this method can be used in the nux view store.
+this method can get initialized on the server side and run before the client can be rendered and delivered on the client side.
+`
+// actions
+export const actions = {
+	async nuxtServerInit({ commit }) {
+		let { data } = await axios.get(
+			"https://jsonplaceholder.typicode.com/posts"
+		);
+		commit("SET_POSTS", data);
+	}
+	// setPosts({ commit }, posts) {
+	// 	commit("SET_POSTS", posts);
+	// }
+};
+`
 
-1. .nuxt ( a core nuxt js folder )
-1. assets uncompile assets
-1. components (writing vue js components)
-1. Layout (master layouts to use in our entire applications)
-1. Middleware ( a certain peace of code that can be run before landing a user to some page, example to restrict a page for not loged in users we use middleware).
-1. node_module (include all packages for this applications)
-1. pages folder ( dedicated to create nuxt pages )
-1. plugins folder ( is a folder that can use third party plugins or create your own plugins and use them in nuxt )
-1. static folder ( is for static contect, like fave icon , this folder will not be handeled by webpack.)
-1. store (if we create an index.js file in it the vuex store option will be implemented in the nuxt.js framework)
-1. nuxt.config.js (is an important file that we will use a lot, the mode export , such universal and spa, also the header page that will apply to all the pages, also can configure each page individually, import css from cdn, can have global css, plugins, modules etc)
+don't forget to import the axios to the index store and put it at the top.
+import axios from "axios";
+
+
+
+## Applying transitions
+you can apply transition in the nuxt.config.js in the css section such this.
+`css: ["@/assets/styles/main.css"],
+  transition: {
+    name: "fade",
+    mode: "out-in"
+  },`
