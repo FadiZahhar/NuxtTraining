@@ -1,110 +1,52 @@
-# Installing and using Plugins
-1. google "vue scrollto"
-2. install the plugin on the solution folder by typing "npm i vue-scrollto"
-3. run the server again by typing "npm run dev"
-4. go to your plugins folder, create a new file name it "scrollto.js"
-5. open the file and import the following
-`import Vue from "vue";
-import VueScrollTo from "vue-scrollto"`
-6. in the nuxt.config.js go use the plugin globaly by going to plugins section and fill the array.
-`plugins: ["@/plugins/scrollto.js"]`
-7. go to posts in the pages , index.vue and add the following line below Card
-`<Card v-for="post in posts" :key="post.id" :post="post" class="ml-auto mr-auto" />
- <button class="btn btn-danger" v-scroll-to="'body'">Back to Top</button>`
+# Deploying to Firebase
+
+## Deploy Static Site
+1. go to the following link and check the available commands https://nuxtjs.org/guide/commands/
+2. we will focus with nuxt build and nuxt generate, we will try both of them.
+3. we will try the generated deployment (Pre Rendered)
+4. first of all we need to run npm run generate.
+5. will create a dist folder that have all the html.
+6. we need to fix couple of things before deployment .
+7. go to store in the index.vue comment the nuxtinitserver of the action since this won't work this will be initiated in the server and need a server side
+8. commit the following code in the store
+`//async nuxtServerInit({ commit }) {
+		//let { data } = await axios.get(
+		//	"https://jsonplaceholder.typicode.com/posts"
+		//);
+		//commit("SET_POSTS", data);
+	//}
+	 setPosts({ commit }, posts) {
+	 	commit("SET_POSTS", posts);
+	 }`
+9. uncommit the following code in the index.vue posts pages.
+`async fetch({store}) {
+		let {data} =  await axios.get('https://jsonplaceholder.typicode.com/posts')
+		 return {allPosts: data}
+		store.dispatch('setPosts', data)
+		 },   `
+10. after that run the command npm run generate.
+11. this will create the dist folder that is ready to be deployed on the static site.
+12. this will minified evrething including the html and js.
+13. now we can deploy to firebze.
+
+## how to deploy to firebase.
+1. google how to do so.
+2. install the tools globaly so from any folder you can run the command.
+3. once it is done.
+4. you need to login to firebase.
+5. you can create an account and login to the console.
+6. go to your root of the project and write firebase initiated
+7. we would like to use only the hosting.
+8. create a project from the console and create a new project.
+9. use the project from the available question.
+10. my public directory is dist
+11. do you want to overwrite (no)
+12. firebase deploy
 
 
-## No SSR Component
-there are plugins that don't support server side rendering to make it work we need to do the following.
-1. isntall it
-`npm i vue-select`
-2. create a new file in the plugins folder name it 'vueselect.js'
-3. import the vue then the library
-`import Vue from "vue";
-import vSelect from "vue-select";``
-
-4. use the vue component 
-`Vue.component("v-select", vSelect);`
-
-5. import the vue globaly on the nuxt.config.js
-`
- plugins: ["@/plugins/scrollto.js",
-  {
-      src: "@/plugins/vueselect.js",
-      ssr: false
-    }
-  ],
-`
-
-6. in the main index.vue pages under the hello world add the following select component
-`
-<no-ssr>
-	  		<v-select v-model="selected" placeholder="Select Category" :options="['foo', 'bar']"></v-select>
-	  	</no-ssr>
-
-`
-
-7. the full index.vue should be like that including the script and a div container for not making errors.
-`<template>
-	<div>
-		<h1>hello world</h1>
-		<no-ssr>
-	  		<v-select v-model="selected" placeholder="Select Category" :options="['foo', 'bar']"></v-select>
-	  	</no-ssr>
-	</div>
-</template>
-
-<script>
-	export default {
-		data() {
-			return {
-				selected: ''
-			}
-		}
-	}
-</script>`
-
-### notes
-this component works on the client side this is we will put <no-ssr> to make it work. also we set the ssr to false in the nux.config.js as an object format.
-
-
-## Nuxt server init method
-this method can be used in the nux view store.
-this method can get initialized on the server side and run before the client can be rendered and delivered on the client side.
-`
-// actions
-export const actions = {
-	async nuxtServerInit({ commit }) {
-		let { data } = await axios.get(
-			"https://jsonplaceholder.typicode.com/posts"
-		);
-		commit("SET_POSTS", data);
-	}
-	// setPosts({ commit }, posts) {
-	// 	commit("SET_POSTS", posts);
-	// }
-};
-`
-
-don't forget to import the axios to the index store and put it at the top.
-import axios from "axios";
-
-
-
-## Applying transitions
-you can apply transition in the nuxt.config.js in the css section such this.
-`css: ["@/assets/styles/main.css"],
-  transition: {
-    name: "fade",
-    mode: "out-in"
-  },`
-  
-  in the main.css style on the assets add the following below the .jumbotron code.
-  
- `.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-	opacity: 0;
-}
-`
+# Deploy Single Page application to firebase.
+1. the only change we should make is to change the universal mode to single page application in the nuxt.config.js
+2. set the mode to 'spa'
+3. then use npm run build
+4. follow the same steps here.
+5. while deploying you need to answer some questinos for firebase to configure as single page applicaiton.
