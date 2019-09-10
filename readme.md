@@ -383,7 +383,7 @@ import axios from 'axios'
             let {data} = await axios.get('http://jsonplaceholder.typicode.com/todos')
             return {posts: data}
         },
-        head: {
+        head(): {
             title: 'List of Posts'
         }
     }
