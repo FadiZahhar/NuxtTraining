@@ -34,7 +34,7 @@ you can find the store folder that can be used to create your file
 
 ```
 # Setup our vuex store
-1. create a store in index.vue as following
+1. create a store in index.js as following
 ```
 // create a store
 export const state = () => ({
@@ -57,7 +57,7 @@ export const mutations = {
 
 // actions
 export const actions = {
-    setPosts({commit}, posts}) {
+    setPosts({commit}, posts) {
         commit("SET_POSTS", posts);
     }
 };
