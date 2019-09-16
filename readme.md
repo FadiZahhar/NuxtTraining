@@ -6,6 +6,9 @@
 5. open the file and import the following
 `import Vue from "vue";
 import VueScrollTo from "vue-scrollto"`
+
+Vue.use(VueScrollTo);
+
 6. in the nuxt.config.js go use the plugin globaly by going to plugins section and fill the array.
 `plugins: ["@/plugins/scrollto.js"]`
 7. go to posts in the pages , index.vue and add the following line below Card
