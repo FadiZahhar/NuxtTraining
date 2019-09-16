@@ -29,8 +29,7 @@ import vSelect from "vue-select";``
 `Vue.component("v-select", vSelect);`
 
 5. import the vue globaly on the nuxt.config.js
-`
- plugins: ["@/plugins/scrollto.js",
+`plugins: ["@/plugins/scrollto.js",
   {
       src: "@/plugins/vueselect.js",
       ssr: false
