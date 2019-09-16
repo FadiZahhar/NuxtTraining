@@ -38,12 +38,10 @@ import vSelect from "vue-select";``
 `
 
 6. in the main index.vue pages under the hello world add the following select component
-`
-<no-ssr>
-	  		<v-select v-model="selected" placeholder="Select Category" :options="['foo', 'bar']"></v-select>
-	  	</no-ssr>
 
-`
+`<no-ssr>
+	  		<v-select v-model="selected" placeholder="Select Category" :options="['foo', 'bar']"></v-select>
+	  	</no-ssr>`
 
 7. the full index.vue should be like that including the script and a div container for not making errors.
 `<template>
