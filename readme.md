@@ -4,7 +4,7 @@ you can find the store folder that can be used to create your file
 1. you need to install the vue chrome extension.
 2. if you opened the vue tab in developer console you can find components vuex events and refresh.
 3. click on vuex you will noticed that no vuex store detected.
-4. go to store folder and create index.php this will activate the vuex, if you can't see it you need to restart the server so you will see base state
+4. go to store folder and create index.js this will activate the vuex, if you can't see it you need to restart the server so you will see base state
 
 
 # Loading images from assets folder
